@@ -1,0 +1,43 @@
+apiVersion: 1
+
+datasources:
+  - name: taramail
+    type: prometheus
+    access: proxy
+    uid: prometheus_taramail
+    url: http://prometheus.taramail_default:9090
+    editable: false
+    jsonData:
+      httpMethod: GET
+      timeInterval: 30s
+
+  - name: taramonit
+    type: prometheus
+    access: proxy
+    uid: prometheus_taramonit
+    url: http://prometheus:9090
+    isDefault: true
+    editable: false
+    jsonData:
+      httpMethod: GET
+      timeInterval: 30s
+
+  - name: taramux
+    type: prometheus
+    access: proxy
+    uid: prometheus_taramux
+    url: http://prometheus.taramux_default:9090
+    editable: false
+    jsonData:
+      httpMethod: GET
+      timeInterval: 30s
+
+  - name: tarawiki
+    type: prometheus
+    access: proxy
+    uid: prometheus_tarawiki
+    url: http://prometheus.tarawiki_default:9090
+    editable: false
+    jsonData:
+      httpMethod: GET
+      timeInterval: 30s

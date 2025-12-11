@@ -1,0 +1,47 @@
+{
+  "id": null,
+  "uid": "biz-email-traffic",
+  "title": "Email Traffic - Overview",
+  "schemaVersion": 38,
+  "version": 1,
+  "tags": ["business", "email"],
+  "time": {
+    "from": "now-24h",
+    "to": "now"
+  },
+  "panels": [
+    {
+      "type": "graph",
+      "title": "Emails Sent (rate)",
+      "id": 1,
+      "gridPos": { "h": 8, "w": 24, "x": 0, "y": 0 },
+      "datasource": { "type": "prometheus", "uid": "prometheus_main" },
+      "targets": [
+        {
+          "expr": "sum(rate(postfix_smtpd_command_count{command=\"MAIL\"}[$__rate_interval]))",
+          "legendFormat": "Emails sent",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "type": "graph",
+      "title": "Spam vs Ham (Rspamd)",
+      "id": 2,
+      "gridPos": { "h": 8, "w": 24, "x": 0, "y": 8 },
+      "datasource": { "type": "prometheus", "uid": "prometheus_main" },
+      "targets": [
+        {
+          "expr": "sum(rate(rspamd_messages{action=\"reject\"}[$__rate_interval]))",
+          "legendFormat": "Rejected (spam)",
+          "refId": "A"
+        },
+        {
+          "expr": "sum(rate(rspamd_messages{action=\"no action\"}[$__rate_interval]))",
+          "legendFormat": "Accepted (ham)",
+          "refId": "B"
+        }
+      ]
+    }
+  ]
+}
