@@ -1,0 +1,6 @@
+*
+!*.rst
+!log-config.*
+!pyproject.toml
+!poetry.lock
+!taramonit

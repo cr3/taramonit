@@ -1,5 +1,26 @@
+
+x-build-args: &backend-build-args
+  PYTHON_VERSION: ${PYTHON_VERSION:-3.13.10}
 name: taramonit
+
 services:
+  api:
+    build:
+      context: backend
+      args:
+        <<: *backend-build-args
+    depends_on:
+      prometheus:
+        condition: service_started
+    command: >
+      sh -c "uvicorn --host=0.0.0.0 --port=80 taramonit.api:app --log-config=/app/log-config.yaml"
+    healthcheck:
+      test: [ "CMD", "python", "-c", "import socket; import sys; s=socket.socket(); s.settimeout(1); sys.exit(s.connect_ex(('localhost',80))>0)" ]
+      start_period: 10s
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
   blackbox-exporter:
     image: prom/blackbox-exporter:v0.28.0
     volumes:
@@ -64,13 +85,44 @@ services:
       - GF_SERVER_ENFORCE_DOMAIN=true
     networks:
       default:
-        ipv4_address: ${IPV4_NETWORK:-172.22.1}.240
       taramail:
       taramux:
       tarawiki:
 
 
     restart: always
+  nginx:
+    build: nginx
+    depends_on:
+      api:
+        condition: service_healthy
+      certbot:
+        condition: service_healthy
+    volumes:
+      - certbot-www:/web:ro,z
+      - certbot-certs:/etc/letsencrypt:ro,z
+      - ./nginx/conf.d/:/etc/nginx/conf.d/:z
+    environment:
+      - SERVER_HOSTNAME=${SERVER_HOSTNAME}
+      - ADDITIONAL_SERVER_NAMES=${ADDITIONAL_SERVER_NAMES:-}
+      - IPV4_NETWORK=${IPV4_NETWORK:-172.22.1}
+    networks:
+      default:
+        ipv4_address: ${IPV4_NETWORK:-172.22.1}.240
+      taramail:
+      taramux:
+      tarawiki:
+    restart: always
+
+  nginx-exporter:
+    image: nginx/nginx-prometheus-exporter:1.5.1
+    depends_on:
+      nginx:
+        condition: service_started
+    command:
+      - '-nginx.scrape-uri=http://nginx:80/nginx_status'
+    restart: always
+
   node-exporter:
     image: prom/node-exporter:v1.8.2
     volumes:

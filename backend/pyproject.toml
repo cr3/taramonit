@@ -1,0 +1,123 @@
+[project]
+name = "taramonit"
+version = "0.0.0"
+description = "Taram Monitoring"
+authors = [
+    {name = "Marc Tardif", email = "marc@taram.ca"},
+]
+readme = "README.rst"
+repository = "https://github.com/cr3/taramonit"
+packages = [
+    {include = "taramonit"},
+]
+include = [
+    "taramonit/templates/**/*.j2",
+]
+requires-python = ">=3.11,<4.0"
+dependencies = [
+    "attrs (>=25.3.0,<26.0.0)",
+    "httpx (>=0.28.1,<1.0.0)",
+    "fastapi (>=0.115.6,<1.0.0)",
+    "pydantic[email] (>=2.12.3,<3.0.0)",
+    "uvicorn[standard] (>=0.34.0,<1.0.0)",
+]
+
+[tool.poetry.group.test.dependencies]
+coverage = "^7.2.3"
+pyhamcrest = "^2.1.0"
+pytest = "^9.0.0"
+
+[tool.poetry.group.check]
+optional = true
+
+[tool.poetry.group.check.dependencies]
+ruff = "^0.14.5"
+
+[project.entry-points."pytest11"]
+taramonit = "taramonit.testing.fixtures"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+target-version = "py311"
+line-length = 120
+fix = true
+lint.select = [
+    # flake8-2020
+    "YTT",
+    # flake8-bandit
+    "S",
+    # flake8-bugbear
+    "B",
+    # flake8-builtins
+    "A",
+    # flake8-comprehensions
+    "C4",
+    # flake8-debugger
+    "T10",
+    # flake8-simplify
+    "SIM",
+    # isort
+    "I",
+    # mccabe
+    "C90",
+    # pycodestyle
+    "E", "W",
+    # pyflakes
+    "F",
+    # pygrep-hooks
+    "PGH",
+    # pyupgrade
+    "UP",
+    # ruff
+    "RUF",
+    # tryceratops
+    "TRY",
+]
+lint.ignore = [
+    # LineTooLong
+    "E501",
+    # DoNotAssignLambda
+    "E731",
+    # Create your own exception
+    "TRY002",
+    # Avoid specifying long messages outside the exception class
+    "TRY003",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S101", "S106"]
+
+# Pytest options:
+#   https://docs.pytest.org/en/6.2.x/reference.html#ini-options-ref
+[tool.pytest.ini_options]
+addopts = [
+    "--doctest-modules",
+    "--doctest-glob=*.rst",
+]
+testpaths = [
+    "taramonit",
+    "docs",
+    "tests",
+]
+
+# Coverage options:
+#   https://coverage.readthedocs.io/en/latest/config.html
+[tool.coverage.paths]
+source = [
+    "taramonit",
+    "*/*/site-packages",
+]
+
+[tool.coverage.report]
+fail_under = 70
+show_missing = true
+
+[tool.coverage.run]
+branch = true
+parallel = true
+source = [
+    "taramonit",
+]
