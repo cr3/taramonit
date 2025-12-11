@@ -1,0 +1,5 @@
+# Environment variables
+.env
+
+# Lint checker
+node_modules/

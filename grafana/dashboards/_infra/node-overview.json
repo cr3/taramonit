@@ -1,0 +1,58 @@
+{
+  "id": null,
+  "uid": "infra-node-overview",
+  "title": "Node Exporter - Overview",
+  "timezone": "",
+  "schemaVersion": 38,
+  "version": 1,
+  "tags": ["infrastructure", "node-exporter"],
+  "time": {
+    "from": "now-1h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "panels": [
+    {
+      "type": "stat",
+      "title": "CPU Usage",
+      "id": 1,
+      "gridPos": { "h": 4, "w": 8, "x": 0, "y": 0 },
+      "datasource": { "type": "prometheus", "uid": "prometheus_taramonit" },
+      "targets": [
+        {
+          "expr": "avg(100 - (irate(node_cpu_seconds_total{mode=\"idle\"}[$__rate_interval]) * 100))",
+          "legendFormat": "CPU usage",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "type": "stat",
+      "title": "Memory Usage",
+      "id": 2,
+      "gridPos": { "h": 4, "w": 8, "x": 8, "y": 0 },
+      "datasource": { "type": "prometheus", "uid": "prometheus_taramonit" },
+      "targets": [
+        {
+          "expr": "100 - ((node_memory_MemAvailable_bytes * 100) / node_memory_MemTotal_bytes)",
+          "legendFormat": "Memory usage",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "type": "graph",
+      "title": "Load Average (1m)",
+      "id": 3,
+      "gridPos": { "h": 7, "w": 24, "x": 0, "y": 4 },
+      "datasource": { "type": "prometheus", "uid": "prometheus_taramonit" },
+      "targets": [
+        {
+          "expr": "node_load1",
+          "legendFormat": "{{instance}}",
+          "refId": "A"
+        }
+      ]
+    }
+  ]
+}

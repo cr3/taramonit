@@ -1,0 +1,126 @@
+name: taramonit
+services:
+  blackbox-exporter:
+    image: prom/blackbox-exporter:v0.28.0
+    volumes:
+      - ./blackbox_exporter/config.yml:/etc/blackbox_exporter/config.yml
+    restart: always
+
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:v0.50.0
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+      - /dev/disk/:/dev/disk:ro
+    restart: always
+    devices:
+      - /dev/kmsg
+    privileged: true
+
+  certbot:
+    image: certbot/certbot:v5.2.1
+    volumes:
+      - ./certbot/deploy-hook.sh:/deploy-hook.sh:ro,Z
+      - certbot-certs:/etc/letsencrypt
+      - certbot-www:/var/www/html
+    environment:
+      - SERVER_HOSTNAME=${SERVER_HOSTNAME}
+    command: >
+      sh -c "trap exit TERM; while :; do
+        certbot renew --webroot --webroot-path=/var/www/html --deploy-hook /deploy-hook.sh;
+        sleep 12h;
+      done"
+    entrypoint: ""
+    restart: always
+    healthcheck:
+      test: [ "CMD", "test", "-e", "/etc/letsencrypt/live/status.taram.ca/fullchain.pem" ]
+      start_period: 10s
+      interval: 10s
+      timeout: 5s
+      retries: 15
+
+  grafana:
+    image: grafana/grafana:12.4.0-20047394513
+    depends_on:
+      prometheus:
+        condition: service_started
+    volumes:
+      - ./grafana/datasources:/etc/grafana/provisioning/datasources
+      - ./grafana/dashboards:/etc/grafana/provisioning/dashboards
+      - certbot-certs:/etc/letsencrypt:ro
+      - grafana-data:/var/lib/grafana
+    environment:
+      - GF_AUTH_ANONYMOUS_ENABLED=false
+      - GF_PLUGINS_PREINSTALL=grafana-piechart-panel,grafana-clock-panel
+      - GF_SECURITY_ADMIN_PASSWORD=${GF_ADMIN_PASS}
+      - GF_SERVER_DOMAIN=status.taram.ca
+      - GF_SERVER_ROOT_URL=https://status.taram.ca/
+      - GF_SERVER_PROTOCOL=https
+      - GF_SERVER_HTTP_PORT=3000
+      - GF_SERVER_CERT_FILE=/etc/letsencrypt/live/fullchain.pem
+      - GF_SERVER_CERT_KEY=/etc/letsencrypt/live/privkey.pem
+      - GF_SERVER_ENFORCE_DOMAIN=true
+    networks:
+      default:
+        ipv4_address: ${IPV4_NETWORK:-172.22.1}.240
+      taramail:
+      taramux:
+      tarawiki:
+
+
+    restart: always
+  node-exporter:
+    image: prom/node-exporter:v1.8.2
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/host:ro,rslave
+    command:
+      - '--path.rootfs=/host'
+      - '--path.procfs=/host/proc'
+      - '--path.sysfs=/host/sys'
+      - "--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|run)($|/)"
+      - "--collector.filesystem.fs-types-exclude=^(sysfs|proc|auto|cgroup.*|tmpfs|devpts|nsfs|overlay)$"
+    restart: always
+    pid: host
+
+  prometheus:
+    image: prom/prometheus:v3.8.0
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus-data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+      - '--web.console.templates=/usr/share/prometheus/consoles'
+      - '--storage.tsdb.retention.time=30d'
+    restart: always
+
+networks:
+  default:
+    driver: bridge
+    driver_opts:
+      com.docker.network.bridge.name: br-taramonit
+    enable_ipv6: true
+    ipam:
+      driver: default
+      config:
+        - subnet: ${IPV4_NETWORK:-172.22.1}.0/24
+  taramail:
+    external: true
+    name: taramail_default
+  taramux:
+    external: true
+    name: taramux_default
+  tarawiki:
+    external: true
+    name: tarawiki_default
+
+volumes:
+  certbot-certs:
+  certbot-www:
+  grafana-data:
+  prometheus-data:
