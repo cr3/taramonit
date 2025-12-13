@@ -23,6 +23,24 @@ scrape_configs:
     static_configs:
       - targets: ['cadvisor:8080']
 
+  - job_name: 'federate-taramail'
+    honor_labels: true
+    metrics_path: '/federate'
+    params:
+      'match[]':
+        - '{job=~"probe|dovecot|rspamd|postfix"}'
+    static_configs:
+      - targets: ['prometheus.taramail_default:9090']
+
+  - job_name: 'federate-tarawiki'
+    honor_labels: true
+    metrics_path: '/federate'
+    params:
+      'match[]':
+        - '{job="probe"}'
+    static_configs:
+      - targets: ['prometheus.tarawiki_default:9090']
+
   - job_name: 'nginx'
     static_configs:
       - targets: ['nginx-exporter:9113']
