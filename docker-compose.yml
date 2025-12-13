@@ -77,11 +77,8 @@ services:
       - GF_PLUGINS_PREINSTALL=grafana-piechart-panel,grafana-clock-panel
       - GF_SECURITY_ADMIN_PASSWORD=${GF_ADMIN_PASS}
       - GF_SERVER_DOMAIN=status.taram.ca
-      - GF_SERVER_ROOT_URL=https://status.taram.ca/
-      - GF_SERVER_PROTOCOL=https
+      - GF_SERVER_ROOT_URL=https://status.taram.ca/grafana/
       - GF_SERVER_HTTP_PORT=3000
-      - GF_SERVER_CERT_FILE=/etc/letsencrypt/live/fullchain.pem
-      - GF_SERVER_CERT_KEY=/etc/letsencrypt/live/privkey.pem
       - GF_SERVER_ENFORCE_DOMAIN=true
     networks:
       default:
