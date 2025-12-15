@@ -32,7 +32,6 @@ http {
     map_hash_bucket_size 256;
 
     # site.conf:
-    proxy_cache_path /tmp levels=1:2 keys_zone=sogo:10m inactive=24h  max_size=1g;
     server_names_hash_max_size 512;
     server_names_hash_bucket_size 128;
 
@@ -61,8 +60,6 @@ http {
 
     # Default Server Name
     server {
-        listen 127.0.0.1:65510; # sogo-auth verify internal
-
         listen 443 ssl;
         listen [::]:443 ssl;
 
@@ -79,8 +76,6 @@ http {
     # Additional Server Names
     {% for SERVER_NAME in ADDITIONAL_SERVER_NAMES %}
     server {
-        listen 127.0.0.1:65510; # sogo-auth verify internal
-
         listen 443 ssl;
         listen [::]:443 ssl;
 

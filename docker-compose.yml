@@ -63,6 +63,13 @@ services:
       timeout: 5s
       retries: 15
 
+  frontend:
+    build:
+      context: frontend
+      args:
+        VITE_API_URL: ${VITE_API_URL:-}
+    restart: always
+
   grafana:
     image: grafana/grafana:12.4.0-20047394513
     depends_on:
@@ -95,9 +102,11 @@ services:
         condition: service_healthy
       certbot:
         condition: service_healthy
+      frontend:
+        condition: service_started
     volumes:
-      - certbot-www:/web:ro,z
-      - certbot-certs:/etc/letsencrypt:ro,z
+      - certbot-www:/web:ro
+      - certbot-certs:/etc/letsencrypt:ro
       - ./nginx/conf.d/:/etc/nginx/conf.d/:z
     environment:
       - SERVER_HOSTNAME=${SERVER_HOSTNAME}
