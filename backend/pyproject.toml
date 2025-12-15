@@ -18,6 +18,10 @@ dependencies = [
     "attrs (>=25.3.0,<26.0.0)",
     "httpx (>=0.28.1,<1.0.0)",
     "fastapi (>=0.115.6,<1.0.0)",
+    "opentelemetry-distro[otlp] (>=0.60b1,<0.61)",
+    "opentelemetry-instrumentation-fastapi (>=0.60b1,<0.61)",
+    "opentelemetry-instrumentation-logging (>=0.60b1,<0.61)",
+    "prometheus-client (>=0.23.1,<0.24.0)",
     "pydantic[email] (>=2.12.3,<3.0.0)",
     "uvicorn[standard] (>=0.34.0,<1.0.0)",
 ]

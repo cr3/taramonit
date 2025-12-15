@@ -5,6 +5,7 @@ Released 2025-12-14
 
 -   Add backend API.
 -   Add frontend UI.
+-   Add tracing.
 
 Version 0.1.0
 -------------

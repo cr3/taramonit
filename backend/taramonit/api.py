@@ -10,13 +10,23 @@ from fastapi import (
     Depends,
     FastAPI,
     Request,
+    Response,
 )
 from fastapi.middleware.cors import CORSMiddleware
+from prometheus_client import REGISTRY
+from prometheus_client.openmetrics.exposition import (
+    CONTENT_TYPE_LATEST,
+    generate_latest,
+)
 from pydantic import BaseModel
 
 from taramonit.prometheus import Prometheus
+from taramonit.telemetry import (
+    TelemetryMiddleware,
+    setup_telemetry,
+)
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("uvicorn")
 
 @asynccontextmanager
 async def lifespan(app: FastAPI) -> AsyncIterator[None]:
@@ -31,7 +41,11 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
     finally:
         await app.state.http_client.aclose()
 
-app = FastAPI(lifespan=lifespan)
+app = FastAPI(
+    lifespan=lifespan,
+    docs_url="/api/swagger",
+    openapi_url="/api/openapi.json",
+)
 
 # Allow CORS for frontend access
 app.add_middleware(
@@ -42,6 +56,12 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+app.add_middleware(
+    TelemetryMiddleware,
+    app_name="api",
+)
+
+setup_telemetry(app, "api", "tempo:4317")
 
 class ServiceStatus(BaseModel):
     name: str
@@ -116,3 +136,10 @@ async def get_status(prometheus: PrometheusDep):
         status=overall_status,
         services=services
     )
+
+
+@app.get("/metrics", include_in_schema=False)
+def metrics() -> Response:
+    return Response(content=generate_latest(REGISTRY), headers={
+        "Content-Type": CONTENT_TYPE_LATEST,
+    })
