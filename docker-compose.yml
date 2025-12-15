@@ -1,20 +1,19 @@
 x-build-args: &python-build-args
   PYTHON_VERSION: ${PYTHON_VERSION:-3.13.10}
 
-x-logging: &loki-logging
-  driver: loki
-  options:
-    loki-url: 'http://loki:3100/api/prom/push'
-    loki-pipeline-stages: |
-      - multiline:
-          firstline: '^\d{4}-\d{2}-\d{2} \d{1,2}:\d{2}:\d{2}'
-          max_wait_time: 3s
-      - regex:
-          expression: '^(?P<time>\d{4}-\d{2}-\d{2} \d{1,2}:\d{2}:\d{2},\d{3}) (?P<message>(?s:.*))$$'
-
 name: taramonit
 
 services:
+  alloy:
+    image: grafana/alloy:v1.12.1
+    depends_on:
+      loki:
+        condition: service_healthy
+    volumes:
+      - ./alloy/config.river:/etc/alloy/config.river:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    command: [ "run", "/etc/alloy/config.river" ]
+
   api:
     build:
       context: backend
@@ -33,14 +32,12 @@ services:
       interval: 10s
       timeout: 5s
       retries: 3
-    logging: *loki-logging
 
   blackbox-exporter:
     image: prom/blackbox-exporter:v0.28.0
     volumes:
       - ./blackbox_exporter/config.yml:/etc/blackbox_exporter/config.yml
     restart: always
-    logging: *loki-logging
 
   cadvisor:
     image: gcr.io/cadvisor/cadvisor:v0.50.0
@@ -76,7 +73,6 @@ services:
       interval: 10s
       timeout: 5s
       retries: 15
-    logging: *loki-logging
 
   frontend:
     build:
@@ -103,17 +99,22 @@ services:
       - GF_SERVER_ROOT_URL=https://status.taram.ca/grafana/
       - GF_SERVER_HTTP_PORT=3000
       - GF_SERVER_ENFORCE_DOMAIN=true
+      - GF_USERS_DEFAULT_THEME=light
     networks:
       - default
       - taramail
       - taramux
       - tarawiki
     restart: always
-    logging: *loki-logging
 
   loki:
     image: grafana/loki:3.5.9
-    command: -config.file=/etc/loki/local-config.yaml
+    command: -config.file=/etc/loki/local-config.yaml -ingester.min-ready-duration=0s
+    healthcheck:
+      test: [ "CMD", "wget", "-qO-", "http://localhost:3100/ready" ]
+      interval: 5s
+      timeout: 2s
+      retries: 30
 
   nginx:
     build: nginx
@@ -181,21 +182,20 @@ services:
       - '--web.console.templates=/usr/share/prometheus/consoles'
       - '--storage.tsdb.retention.time=30d'
     restart: always
-    logging: *loki-logging
 
   tempo:
     image: grafana/tempo:2.9.0
+    depends_on:
+      loki:
+        condition: service_healthy
+    volumes:
+      - ./tempo/tempo.yml:/etc/tempo.yml
     command:
       - "-config.file=/etc/tempo.yml"
       - "--target=all"
       - "--storage.trace.backend=local"
       - "--storage.trace.local.path=/var/tempo"
       - "--auth.enabled=false"
-    volumes:
-      - ./tempo/tempo.yml:/etc/tempo.yml
-    depends_on:
-      - loki
-    logging: *loki-logging
 
 networks:
   default:

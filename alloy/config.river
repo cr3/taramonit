@@ -1,0 +1,36 @@
+logging {
+  level  = "info"
+  format = "logfmt"
+}
+
+discovery.docker "local" {
+  host = "unix:///var/run/docker.sock"
+}
+
+discovery.relabel "docker_logs" {
+  targets = discovery.docker.local.targets
+
+  rule {
+    source_labels = ["__meta_docker_container_label_com_docker_compose_project"]
+    regex = "^tara.*"
+    action = "keep"
+  }
+}
+
+loki.write "to_loki" {
+  endpoint { url = "http://loki:3100/loki/api/v1/push" }
+}
+
+loki.source.docker "containers" {
+  targets = discovery.relabel.docker_logs.output
+  host    = "unix:///var/run/docker.sock"
+
+
+  labels = {
+    compose_project = "{{.DockerComposeProject}}",
+    compose_service = "{{.DockerComposeService}}",
+    container       = "{{.ContainerName}}",
+  }
+
+  forward_to = [loki.write.to_loki.receiver]
+}
