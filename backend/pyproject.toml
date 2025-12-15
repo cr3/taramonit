@@ -26,6 +26,8 @@ dependencies = [
 coverage = "^7.2.3"
 pyhamcrest = "^2.1.0"
 pytest = "^9.0.0"
+pytest-asyncio = "^1.3.0"
+pytest-unique = "^0.1.7"
 
 [tool.poetry.group.check]
 optional = true
@@ -112,7 +114,7 @@ source = [
 ]
 
 [tool.coverage.report]
-fail_under = 70
+fail_under = 90
 show_missing = true
 
 [tool.coverage.run]

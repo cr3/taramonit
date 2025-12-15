@@ -1,21 +1,37 @@
 import asyncio
 import logging
+import os
+from collections.abc import AsyncIterator
+from contextlib import asynccontextmanager
 from typing import Annotated
 
+import httpx
 from fastapi import (
     Depends,
     FastAPI,
-    HTTPException,
+    Request,
 )
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
 from taramonit.prometheus import Prometheus
 
-logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-app = FastAPI(title="Taram Status API", version="1.0.0")
+@asynccontextmanager
+async def lifespan(app: FastAPI) -> AsyncIterator[None]:
+    app.state.http_client = httpx.AsyncClient(
+        base_url=os.environ["PROMETHEUS_URL"],
+        timeout=httpx.Timeout(10.0),
+        limits=httpx.Limits(max_connections=100, max_keepalive_connections=20),
+        # http2=True,  # optional
+    )
+    try:
+        yield
+    finally:
+        await app.state.http_client.aclose()
+
+app = FastAPI(lifespan=lifespan)
 
 # Allow CORS for frontend access
 app.add_middleware(
@@ -38,16 +54,11 @@ class OverallStatus(BaseModel):
     services: list[ServiceStatus]
 
 
-def get_prometheus():
-    return Prometheus("http://prometheus:9090")
+def get_prometheus(request: Request):
+    http_client = request.app.state.http_client
+    return Prometheus(http_client)
 
 PrometheusDep = Annotated[Prometheus, Depends(get_prometheus)]
-
-
-@app.get("/health")
-async def root():
-    """Health check endpoint."""
-    return {"status": "ok", "message": "Taram Status API"}
 
 
 @app.get("/api/status", response_model=OverallStatus)
@@ -77,22 +88,22 @@ async def get_status(prometheus: PrometheusDep):
     services = [
         ServiceStatus(
             name="Mail (web)",
-            status="up" if mail_status == 1 else "down",
+            status="up" if mail_status else "down",
             availability_24h=mail_availability
         ),
         ServiceStatus(
             name="Dovecot",
-            status="up" if dovecot_status == 1 else "down",
+            status="up" if dovecot_status else "down",
             availability_24h=dovecot_availability
         ),
         ServiceStatus(
             name="Rspamd",
-            status="up" if rspamd_status == 1 else "down",
+            status="up" if rspamd_status else "down",
             availability_24h=rspamd_availability
         ),
         ServiceStatus(
             name="Wiki",
-            status="up" if wiki_status == 1 else "down",
+            status="up" if wiki_status else "down",
             availability_24h=wiki_availability
         ),
     ]
@@ -105,16 +116,3 @@ async def get_status(prometheus: PrometheusDep):
         status=overall_status,
         services=services
     )
-
-
-@app.get("/api/services/{service_name}")
-async def get_service_status(service_name: str, prometheus: PrometheusDep):
-    """Get detailed status for a specific service."""
-    # This could be expanded to return more detailed metrics
-    status = await get_status(prometheus)
-
-    for service in status.services:
-        if service.name.lower().replace(" ", "-") == service_name.lower():
-            return service
-
-    raise HTTPException(status_code=404, detail="Service not found")

@@ -13,6 +13,8 @@ services:
         condition: service_started
     command: >
       sh -c "uvicorn --host=0.0.0.0 --port=80 taramonit.api:app --log-config=/app/log-config.yaml"
+    environment:
+      - PROMETHEUS_URL=http://prometheus:9090
     healthcheck:
       test: [ "CMD", "python", "-c", "import socket; import sys; s=socket.socket(); s.settimeout(1); sys.exit(s.connect_ex(('localhost',80))>0)" ]
       start_period: 10s
