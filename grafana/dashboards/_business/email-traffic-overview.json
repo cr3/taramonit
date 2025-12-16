@@ -15,7 +15,7 @@
       "title": "Emails Sent (rate)",
       "id": 1,
       "gridPos": { "h": 8, "w": 24, "x": 0, "y": 0 },
-      "datasource": { "type": "prometheus", "uid": "prometheus_main" },
+      "datasource": { "type": "prometheus", "uid": "prometheus_taramail" },
       "targets": [
         {
           "expr": "sum(rate(postfix_smtpd_command_count{command=\"MAIL\"}[$__rate_interval]))",
@@ -29,7 +29,7 @@
       "title": "Spam vs Ham (Rspamd)",
       "id": 2,
       "gridPos": { "h": 8, "w": 24, "x": 0, "y": 8 },
-      "datasource": { "type": "prometheus", "uid": "prometheus_main" },
+      "datasource": { "type": "prometheus", "uid": "prometheus_taramail" },
       "targets": [
         {
           "expr": "sum(rate(rspamd_messages{action=\"reject\"}[$__rate_interval]))",

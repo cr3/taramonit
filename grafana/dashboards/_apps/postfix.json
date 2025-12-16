@@ -51,8 +51,8 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(postfix_cleanup_messages_processed_total{instance=~\"$instance\"}[5m])",
-          "legendFormat": "{{ instance }}",
+          "expr": "rate(postfix_cleanup_messages_processed_total{job=~\"$job\"}[5m])",
+          "legendFormat": "{{ job }}",
           "refId": "A"
         }
       ],
@@ -127,8 +127,8 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(postfix_cleanup_messages_rejected_total{instance=~\"$instance\"}[5m])",
-          "legendFormat": "{{ instance }}",
+          "expr": "rate(postfix_cleanup_messages_rejected_total{job=~\"$job\"}[5m])",
+          "legendFormat": "{{ job }}",
           "refId": "A"
         }
       ],
@@ -156,338 +156,6 @@
           "logBase": 1,
           "max": null,
           "min": null,
-          "show": true
-        },
-        {
-          "show": false
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "collapsed": false,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 8
-      },
-      "id": 32,
-      "panels": [],
-      "title": "lmtp(8)",
-      "type": "row"
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": { "type": "prometheus", "uid": "prometheus_taramail" },
-      "fill": 8,
-      "gridPos": {
-        "h": 7,
-        "w": 12,
-        "x": 0,
-        "y": 9
-      },
-      "id": 5,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": false,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 1,
-      "nullPointMode": "null",
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": true,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "rate(postfix_lmtp_messages_processed_total{instance=~\"$instance\"}[5m])",
-          "legendFormat": "{{ instance }}",
-          "refId": "A"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Message processing rate",
-      "tooltip": {
-        "shared": true,
-        "sort": 2,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "ops",
-          "logBase": 1,
-          "max": null,
-          "min": 0,
-          "show": true
-        },
-        {
-          "show": false
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": { "type": "prometheus", "uid": "prometheus_taramail" },
-      "fill": 8,
-      "gridPos": {
-        "h": 7,
-        "w": 12,
-        "x": 12,
-        "y": 9
-      },
-      "id": 6,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": false,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 1,
-      "nullPointMode": "null",
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": true,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "(sum(rate(postfix_lmtp_delivery_delay_seconds_sum{instance=~\"$instance\"}[5m])) by (stage)) / (sum(rate(postfix_lmtp_delivery_delay_seconds_count{instance=~\"$instance\"}[5m])) by (stage))",
-          "legendFormat": "{{ stage }}",
-          "refId": "A"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Average delivery duration by stage",
-      "tooltip": {
-        "shared": true,
-        "sort": 2,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "s",
-          "logBase": 1,
-          "max": null,
-          "min": 0,
-          "show": true
-        },
-        {
-          "show": false
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "collapsed": false,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 16
-      },
-      "id": 33,
-      "panels": [],
-      "title": "pipe(8)",
-      "type": "row"
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": { "type": "prometheus", "uid": "prometheus_taramail" },
-      "fill": 8,
-      "gridPos": {
-        "h": 7,
-        "w": 12,
-        "x": 0,
-        "y": 17
-      },
-      "id": 8,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": false,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 1,
-      "nullPointMode": "null",
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": true,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "rate(postfix_pipe_delivery_delay_seconds_count{instance=~\"$instance\"}[5m])",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "{{ instance }} {{ relay }} {{stage}}",
-          "refId": "A"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Message processing rate",
-      "tooltip": {
-        "shared": true,
-        "sort": 2,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "ops",
-          "logBase": 1,
-          "max": null,
-          "min": 0,
-          "show": true
-        },
-        {
-          "show": false
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": { "type": "prometheus", "uid": "prometheus_taramail" },
-      "fill": 8,
-      "gridPos": {
-        "h": 7,
-        "w": 12,
-        "x": 12,
-        "y": 17
-      },
-      "id": 9,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": false,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 1,
-      "nullPointMode": "null",
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": true,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "sum(rate(postfix_pipe_delivery_delay_seconds_count{instance=~\"$instance\"}[5m])) by (stage)",
-          "legendFormat": "{{ stage }}",
-          "refId": "A"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Average delivery duration by stage",
-      "tooltip": {
-        "shared": true,
-        "sort": 2,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "s",
-          "logBase": 1,
-          "max": null,
-          "min": 0,
           "show": true
         },
         {
@@ -548,8 +216,8 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(postfix_qmgr_messages_inserted_size_bytes_count{instance=~\"$instance\"}[5m])",
-          "legendFormat": "{{ instance }}",
+          "expr": "rate(postfix_qmgr_messages_inserted_size_bytes_count{job=~\"$job\"}[5m])",
+          "legendFormat": "{{ job }}",
           "refId": "A"
         }
       ],
@@ -624,8 +292,8 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(postfix_qmgr_messages_inserted_size_bytes_sum{instance=~\"$instance\"}[5m])",
-          "legendFormat": "{{ instance }}",
+          "expr": "rate(postfix_qmgr_messages_inserted_size_bytes_sum{job=~\"$job\"}[5m])",
+          "legendFormat": "{{ job }}",
           "refId": "A"
         }
       ],
@@ -700,8 +368,8 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(postfix_qmgr_messages_removed_total{instance=~\"$instance\"}[5m])",
-          "legendFormat": "{{ instance }}",
+          "expr": "rate(postfix_qmgr_messages_removed_total{job=~\"$job\"}[5m])",
+          "legendFormat": "{{ job }}",
           "refId": "A"
         }
       ],
@@ -789,8 +457,8 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "postfix_showq_message_size_bytes_count{instance=~\"$instance\"}",
-          "legendFormat": "{{ instance }} {{ queue }}",
+          "expr": "postfix_showq_message_size_bytes_count{job=~\"$job\"}",
+          "legendFormat": "{{ job }} {{ queue }}",
           "refId": "A"
         }
       ],
@@ -865,8 +533,8 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "postfix_showq_message_size_bytes_sum{instance=~\"$instance\"}",
-          "legendFormat": "{{ instance }} {{ queue }}",
+          "expr": "postfix_showq_message_size_bytes_sum{job=~\"$job\"}",
+          "legendFormat": "{{ job }} {{ queue }}",
           "refId": "A"
         }
       ],
@@ -941,10 +609,10 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg(postfix_showq_message_age_seconds_count{instance=~\"$instance\"}) by (instance)",
+          "expr": "avg(postfix_showq_message_age_seconds_count{job=~\"$job\"}) by (job)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "{{ instance }} {{ queue }}",
+          "legendFormat": "{{ job }} {{ queue }}",
           "refId": "A"
         }
       ],
@@ -1032,10 +700,10 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(postfix_smtp_delivery_delay_seconds_count{instance=~\"$instance\"}[5m])",
+          "expr": "rate(postfix_smtp_delivery_delay_seconds_count{job=~\"$job\"}[5m])",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "{{ instance }} {{stage}}",
+          "legendFormat": "{{ job }} {{stage}}",
           "refId": "A"
         }
       ],
@@ -1110,7 +778,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "(sum(rate(postfix_smtp_delivery_delay_seconds_sum{instance=~\"$instance\"}[5m])) by (stage)) / (sum(rate(postfix_smtp_delivery_delay_seconds_count{instance=~\"$instance\"}[5m])) by (stage))",
+          "expr": "(sum(rate(postfix_smtp_delivery_delay_seconds_sum{job=~\"$job\"}[5m])) by (stage)) / (sum(rate(postfix_smtp_delivery_delay_seconds_count{job=~\"$job\"}[5m])) by (stage))",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "{{ stage }}",
@@ -1188,10 +856,10 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "(sum(rate(postfix_smtp_tls_connections_total{instance=~\"$instance\"}[5m])) by (instance)) / (sum(rate(postfix_smtp_delivery_delay_seconds_count{instance=~\"$instance\"}[5m])) by (instance))",
+          "expr": "(sum(rate(postfix_smtp_tls_connections_total{job=~\"$job\"}[5m])) by (job)) / (sum(rate(postfix_smtp_delivery_delay_seconds_count{job=~\"$job\"}[5m])) by (job))",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "{{instance}}",
+          "legendFormat": "{{job}}",
           "refId": "A"
         }
       ],
@@ -1363,8 +1031,8 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(postfix_smtpd_connects_total{instance=~\"$instance\"}[5m])",
-          "legendFormat": "{{ instance }}",
+          "expr": "rate(postfix_smtpd_connects_total{job=~\"$job\"}[5m])",
+          "legendFormat": "{{ job }}",
           "refId": "A"
         }
       ],
@@ -1439,8 +1107,8 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(postfix_smtpd_disconnects_total{instance=~\"$instance\"}[5m])",
-          "legendFormat": "{{ instance }}",
+          "expr": "rate(postfix_smtpd_disconnects_total{job=~\"$job\"}[5m])",
+          "legendFormat": "{{ job }}",
           "refId": "A"
         }
       ],
@@ -1515,10 +1183,10 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(postfix_smtpd_connections_lost_total{instance=~\"$instance\"}[5m])",
+          "expr": "rate(postfix_smtpd_connections_lost_total{job=~\"$job\"}[5m])",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "{{ instance }} {{after_stage}}",
+          "legendFormat": "{{ job }} {{after_stage}}",
           "refId": "A"
         }
       ],
@@ -1593,10 +1261,10 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(postfix_smtpd_sasl_authentication_failures_total{instance=~\"$instance\"}[5m])",
+          "expr": "rate(postfix_smtpd_sasl_authentication_failures_total{job=~\"$job\"}[5m])",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "{{ instance }}",
+          "legendFormat": "{{ job }}",
           "refId": "A"
         }
       ],
@@ -1671,8 +1339,8 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(postfix_smtpd_forward_confirmed_reverse_dns_errors_total{instance=~\"$instance\"}[5m])",
-          "legendFormat": "{{ instance }}",
+          "expr": "rate(postfix_smtpd_forward_confirmed_reverse_dns_errors_total{job=~\"$job\"}[5m])",
+          "legendFormat": "{{ job }}",
           "refId": "A"
         }
       ],
@@ -1747,8 +1415,8 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(postfix_smtpd_messages_processed_total{instance=~\"$instance\"}[5m])",
-          "legendFormat": "{{ instance }}",
+          "expr": "rate(postfix_smtpd_messages_processed_total{job=~\"$job\"}[5m])",
+          "legendFormat": "{{ job }}",
           "refId": "A"
         }
       ],
@@ -1823,10 +1491,10 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(postfix_smtpd_messages_rejected_total{instance=~\"$instance\"}[5m])",
+          "expr": "rate(postfix_smtpd_messages_rejected_total{job=~\"$job\"}[5m])",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "{{ instance }} {{code}}",
+          "legendFormat": "{{ job }} {{code}}",
           "refId": "A"
         }
       ],
@@ -1901,10 +1569,10 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "(sum(rate(postfix_smtpd_tls_connections_total{instance=~\"$instance\"}[5m])) by (instance)) / (sum(rate(postfix_smtpd_connects_total{instance=~\"$instance\"}[5m])) by (instance))",
+          "expr": "(sum(rate(postfix_smtpd_tls_connections_total{job=~\"$job\"}[5m])) by (job)) / (sum(rate(postfix_smtpd_connects_total{job=~\"$job\"}[5m])) by (job))",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "{{instance}}",
+          "legendFormat": "{{job}}",
           "refId": "A"
         }
       ],
@@ -2042,9 +1710,9 @@
         "includeAll": true,
         "label": null,
         "multi": true,
-        "name": "instance",
+        "name": "job",
         "options": [],
-        "query": "label_values(postfix_up,instance)",
+        "query": "label_values(postfix_up,job)",
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
