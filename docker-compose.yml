@@ -112,6 +112,7 @@ services:
       - grafana-data:/var/lib/grafana
     environment:
       - GF_AUTH_ANONYMOUS_ENABLED=false
+      - GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH=/etc/grafana/provisioning/dashboards/_home/home.json
       - GF_PLUGINS_PREINSTALL=grafana-piechart-panel,grafana-clock-panel
       - GF_SECURITY_ADMIN_PASSWORD=${GF_ADMIN_PASS}
       - GF_SERVER_DOMAIN=status.taram.ca
