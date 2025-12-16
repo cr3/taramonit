@@ -3,6 +3,7 @@ Version 0.2.0
 
 Released 2025-12-14
 
+-   Add alertmanager rules.
 -   Add backend API.
 -   Add frontend UI.
 -   Add tracing.

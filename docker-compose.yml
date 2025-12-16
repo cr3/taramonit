@@ -4,6 +4,20 @@ x-build-args: &python-build-args
 name: taramonit
 
 services:
+  alertmanager:
+    image: prom/alertmanager:v0.30.0
+    command:
+      - --config.file=/etc/alertmanager/alertmanager.yml
+      - --storage.path=/alertmanager
+      - --web.external-url=https://${SERVER_HOSTNAME}/alertmanager
+    volumes:
+      - ./alertmanager/alertmanager.yml:/etc/alertmanager/alertmanager.yml:ro
+      - alertmanager-data:/alertmanager
+    restart: always
+    networks:
+      - default
+      - taramail
+
   alloy:
     image: grafana/alloy:v1.12.1
     depends_on:
@@ -13,6 +27,7 @@ services:
       - ./alloy/config.river:/etc/alloy/config.river:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
     command: [ "run", "/etc/alloy/config.river" ]
+    restart: always
 
   api:
     build:
@@ -32,6 +47,7 @@ services:
       interval: 10s
       timeout: 5s
       retries: 3
+    restart: always
 
   blackbox-exporter:
     image: prom/blackbox-exporter:v0.28.0
@@ -47,6 +63,9 @@ services:
       - /sys:/sys:ro
       - /var/lib/docker/:/var/lib/docker:ro
       - /dev/disk/:/dev/disk:ro
+    command:
+      - '--docker_only=true'
+      - '--enable_metrics=cpu,memory,network'
     restart: always
     devices:
       - /dev/kmsg
@@ -109,7 +128,10 @@ services:
 
   loki:
     image: grafana/loki:3.5.9
-    command: -config.file=/etc/loki/local-config.yaml -ingester.min-ready-duration=0s
+    command:
+      - '-config.file=/etc/loki/local-config.yaml'
+      - '-ingester.min-ready-duration=0s'
+    restart: always
     healthcheck:
       test: [ "CMD", "wget", "-qO-", "http://localhost:3100/ready" ]
       interval: 5s
@@ -168,7 +190,7 @@ services:
   prometheus:
     image: prom/prometheus:v3.8.0
     volumes:
-      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./prometheus:/etc/prometheus:ro
       - prometheus-data:/prometheus
     networks:
       - default
@@ -190,12 +212,12 @@ services:
         condition: service_healthy
     volumes:
       - ./tempo/tempo.yml:/etc/tempo.yml
+      - tempo-data:/var/tempo
     command:
-      - "-config.file=/etc/tempo.yml"
-      - "--target=all"
-      - "--storage.trace.backend=local"
-      - "--storage.trace.local.path=/var/tempo"
-      - "--auth.enabled=false"
+      - '-config.file=/etc/tempo.yml'
+      - '--target=all'
+      - '--auth.enabled=false'
+    restart: always
 
 networks:
   default:
@@ -218,7 +240,9 @@ networks:
     name: tarawiki_default
 
 volumes:
+  alertmanager-data:
   certbot-certs:
   certbot-www:
   grafana-data:
   prometheus-data:
+  tempo-data:

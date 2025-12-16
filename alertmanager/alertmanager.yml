@@ -1,0 +1,19 @@
+global:
+  resolve_timeout: 5m
+
+route:
+  group_by: ["alertname", "job", "instance"]
+  group_wait: 30s
+  group_interval: 5m
+  repeat_interval: 12h
+  receiver: "default"
+
+receivers:
+  - name: "default"
+    email_configs:
+      - to: "alerts@taram.ca"
+        from: "monit@localhost"
+        smarthost: "postfix.taramail_default:587"
+        send_resolved: true
+        tls_config:
+          insecure_skip_verify: true
