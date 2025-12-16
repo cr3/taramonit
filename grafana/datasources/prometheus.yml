@@ -31,7 +31,7 @@ datasources:
     type: prometheus
     access: proxy
     uid: prometheus_taramonit
-    url: http://prometheus:9090
+    url: http://prometheus.taramonit_default:9090
     isDefault: true
     editable: false
     jsonData:
@@ -62,7 +62,7 @@ datasources:
     type: tempo
     access: proxy
     uid: tempo
-    url: http://tempo
+    url: http://tempo:3200
     editable: false
     jsonData:
       nodeGraph:

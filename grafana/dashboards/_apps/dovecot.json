@@ -811,7 +811,7 @@
         "type": "prometheus",
         "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
       },
-      "description": "Dovecot SMTP Command Sum",
+      "description": "Dovecot SMTP Command Total",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -890,13 +890,13 @@
             "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
           },
           "exemplar": true,
-          "expr": "dovecot_smtp_command_sum{instance=\"$instance\"} - dovecot_smtp_command_sum{instance=\"$instance\"} offset $__interval",
+          "expr": "dovecot_smtp_command_total{instance=\"$instance\"} - dovecot_smtp_command_total{instance=\"$instance\"} offset $__interval",
           "interval": "$__interval",
           "legendFormat": "{{cmd_name}}{{status_code}}",
           "refId": "A"
         }
       ],
-      "title": "SMTP Command Sum",
+      "title": "SMTP Command Total",
       "type": "timeseries"
     },
     {
@@ -996,7 +996,7 @@
         "type": "prometheus",
         "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
       },
-      "description": "Dovecot Mail Delivery Sum",
+      "description": "Dovecot Mail Delivery Total",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1050,7 +1050,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "Mail Delivery Sum"
+              "options": "Mail Delivery Total"
             },
             "properties": [
               {
@@ -1090,13 +1090,13 @@
             "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
           },
           "exemplar": true,
-          "expr": "dovecot_mail_delivery_sum{instance=\"$instance\"} - dovecot_mail_delivery_sum{instance=\"$instance\"} offset $__interval",
+          "expr": "dovecot_mail_delivery_total{instance=\"$instance\"} - dovecot_mail_delivery_total{instance=\"$instance\"} offset $__interval",
           "interval": "$__interval",
-          "legendFormat": "Mail Delivery Sum",
+          "legendFormat": "Mail Delivery Total",
           "refId": "A"
         }
       ],
-      "title": "Mail Delivery Sum",
+      "title": "Mail Delivery Total",
       "type": "timeseries"
     }
   ],
