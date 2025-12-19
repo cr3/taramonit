@@ -169,7 +169,7 @@ services:
     restart: always
 
   node-exporter:
-    image: prom/node-exporter:v1.8.2
+    image: prom/node-exporter:v1.10.2
     volumes:
       - /proc:/host/proc:ro
       - /sys:/host/sys:ro
