@@ -128,7 +128,7 @@ services:
     restart: always
 
   loki:
-    image: grafana/loki:3.5.9
+    image: grafana/loki:3.6.3
     command:
       - '-config.file=/etc/loki/local-config.yaml'
       - '-ingester.min-ready-duration=0s'
