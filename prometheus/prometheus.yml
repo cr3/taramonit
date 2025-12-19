@@ -39,6 +39,8 @@ scrape_configs:
     params:
       'match[]':
         - '{job=~"probe|dovecot|rspamd|postfix"}'
+        - 'dovecot_build_info'
+        - 'rspamd_info'
     static_configs:
       - targets: ['prometheus.taramail_default:9090']
 
