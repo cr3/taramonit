@@ -22,7 +22,7 @@ services:
     image: grafana/alloy:v1.12.1
     depends_on:
       loki:
-        condition: service_healthy
+        condition: service_started
     volumes:
       - ./alloy/config.river:/etc/alloy/config.river:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
@@ -113,7 +113,7 @@ services:
     environment:
       - GF_AUTH_ANONYMOUS_ENABLED=false
       - GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH=/etc/grafana/provisioning/dashboards/_home/home.json
-      - GF_PLUGINS_PREINSTALL=grafana-piechart-panel,grafana-clock-panel
+      - GF_PLUGINS_PREINSTALL=grafana-piechart-panel,grafana-clock-panel,grafana-lokioperational-app
       - GF_SECURITY_ADMIN_PASSWORD=${GF_ADMIN_PASS}
       - GF_SERVER_DOMAIN=status.taram.ca
       - GF_SERVER_ROOT_URL=https://status.taram.ca/grafana/
@@ -128,16 +128,11 @@ services:
     restart: always
 
   loki:
-    image: grafana/loki:3.5.9
+    image: grafana/loki:3.6.3
     command:
       - '-config.file=/etc/loki/local-config.yaml'
       - '-ingester.min-ready-duration=0s'
     restart: always
-    healthcheck:
-      test: [ "CMD", "wget", "-qO-", "http://localhost:3100/ready" ]
-      interval: 5s
-      timeout: 2s
-      retries: 30
 
   nginx:
     build: nginx
@@ -210,7 +205,7 @@ services:
     image: grafana/tempo:2.9.0
     depends_on:
       loki:
-        condition: service_healthy
+        condition: service_started
     volumes:
       - ./tempo/tempo.yml:/etc/tempo.yml
       - tempo-data:/var/tempo
