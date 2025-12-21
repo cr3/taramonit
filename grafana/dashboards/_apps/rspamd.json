@@ -44,7 +44,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+        "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
       },
       "fieldConfig": {
         "defaults": {
@@ -88,7 +88,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+            "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
           },
           "editorMode": "code",
           "expr": "time() - process_start_time_seconds{instance=\"$instance\"}",
@@ -103,7 +103,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+        "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
       },
       "fieldConfig": {
         "defaults": {
@@ -153,7 +153,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+            "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
           },
           "editorMode": "code",
           "expr": "rspamd_connections{instance=\"$instance\"}",
@@ -168,7 +168,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+        "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
       },
       "fieldConfig": {
         "defaults": {
@@ -218,7 +218,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+            "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
           },
           "editorMode": "code",
           "expr": "rspamd_scan_time_average{instance=\"$instance\"}",
@@ -233,7 +233,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+        "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
       },
       "fieldConfig": {
         "defaults": {
@@ -284,7 +284,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+            "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
           },
           "editorMode": "code",
           "expr": "rspamd_allocated_bytes{instance=\"$instance\"}",
@@ -312,7 +312,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+        "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
       },
       "fieldConfig": {
         "defaults": {
@@ -358,7 +358,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+            "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
           },
           "editorMode": "code",
           "expr": "rspamd_scanned_total{instance=\"$instance\"}",
@@ -373,7 +373,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+        "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
       },
       "fieldConfig": {
         "defaults": {
@@ -426,7 +426,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+            "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
           },
           "editorMode": "code",
           "expr": "rspamd_ham_total{instance=\"$instance\"}",
@@ -437,7 +437,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+            "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
           },
           "editorMode": "code",
           "expr": "rspamd_spam_total{instance=\"$instance\"}",
@@ -453,7 +453,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+        "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
       },
       "fieldConfig": {
         "defaults": {
@@ -506,7 +506,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+            "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
           },
           "editorMode": "code",
           "expr": "rspamd_chunks_allocated{instance=\"$instance\"}",
@@ -518,7 +518,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+            "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
           },
           "editorMode": "code",
           "expr": "rspamd_chunks_freed{instance=\"$instance\"}",
@@ -530,7 +530,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+            "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
           },
           "editorMode": "code",
           "expr": "rspamd_shared_chunks_allocated{instance=\"$instance\"}",
@@ -542,7 +542,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+            "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
           },
           "editorMode": "code",
           "expr": "rspamd_chunks_oversized{instance=\"$instance\"}",
@@ -558,7 +558,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+        "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
       },
       "fieldConfig": {
         "defaults": {
@@ -611,7 +611,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+            "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
           },
           "editorMode": "code",
           "expr": "rspamd_pools_allocated{instance=\"$instance\"}",
@@ -622,7 +622,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+            "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
           },
           "editorMode": "code",
           "expr": "rspamd_pools_freed{instance=\"$instance\"}",
@@ -638,7 +638,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+        "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
       },
       "fieldConfig": {
         "defaults": {
@@ -684,7 +684,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+            "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
           },
           "editorMode": "code",
           "expr": "rspamd_learns_total{instance=\"$instance\"}",
@@ -712,7 +712,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+        "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
       },
       "fieldConfig": {
         "defaults": {
@@ -758,7 +758,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+            "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
           },
           "editorMode": "code",
           "expr": "rspamd_actions_total{instance=\"$instance\",type=\"no action\"}",
@@ -773,7 +773,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+        "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
       },
       "fieldConfig": {
         "defaults": {
@@ -819,7 +819,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+            "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
           },
           "editorMode": "code",
           "expr": "rspamd_actions_total{instance=\"$instance\",type=\"rewrite subject\"}",
@@ -834,7 +834,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+        "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
       },
       "fieldConfig": {
         "defaults": {
@@ -880,7 +880,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+            "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
           },
           "editorMode": "code",
           "expr": "rspamd_actions_total{instance=\"$instance\",type=\"reject\"}",
@@ -895,7 +895,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+        "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
       },
       "fieldConfig": {
         "defaults": {
@@ -941,7 +941,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+            "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
           },
           "editorMode": "code",
           "expr": "rspamd_actions_total{instance=\"$instance\",type=\"add header\"}",
@@ -956,7 +956,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+        "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
       },
       "fieldConfig": {
         "defaults": {
@@ -1002,7 +1002,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+            "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
           },
           "editorMode": "code",
           "expr": "rspamd_actions_total{instance=\"$instance\",type=\"greylist\"}",
@@ -1017,7 +1017,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+        "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
       },
       "fieldConfig": {
         "defaults": {
@@ -1063,7 +1063,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+            "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
           },
           "editorMode": "code",
           "expr": "rspamd_actions_total{instance=\"$instance\",type=\"soft reject\"}",
@@ -1078,7 +1078,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+        "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
       },
       "fieldConfig": {
         "defaults": {
@@ -1152,7 +1152,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+            "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
           },
           "editorMode": "code",
           "expr": "rate(rspamd_actions_total{instance=\"$instance\"}[2m])",
@@ -1167,7 +1167,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+        "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
       },
       "fieldConfig": {
         "defaults": {
@@ -1241,7 +1241,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+            "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
           },
           "editorMode": "code",
           "expr": "rate(rspamd_spam_total{instance=\"$instance\"}[2m])",
@@ -1252,7 +1252,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+            "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
           },
           "editorMode": "code",
           "expr": "rate(rspamd_ham_total{instance=\"$instance\"}[2m])",
@@ -1264,7 +1264,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+            "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
           },
           "editorMode": "code",
           "expr": "rate(rspamd_scanned_total{instance=\"$instance\"}[2m])",
@@ -1280,7 +1280,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+        "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
       },
       "fieldConfig": {
         "defaults": {
@@ -1358,7 +1358,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+            "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
           },
           "editorMode": "code",
           "expr": "rspamd_chunks_allocated{instance=\"$instance\"}",
@@ -1370,7 +1370,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+            "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
           },
           "editorMode": "code",
           "expr": "rspamd_chunks_freed{instance=\"$instance\"}",
@@ -1382,7 +1382,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+            "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
           },
           "editorMode": "code",
           "expr": "rspamd_shared_chunks_allocated{instance=\"$instance\"}",
@@ -1394,7 +1394,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+            "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
           },
           "editorMode": "code",
           "expr": "rspamd_chunks_oversized{instance=\"$instance\"}",
@@ -1410,7 +1410,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+        "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
       },
       "fieldConfig": {
         "defaults": {
@@ -1488,7 +1488,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+            "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
           },
           "editorMode": "code",
           "expr": "rspamd_pools_allocated{instance=\"$instance\"}",
@@ -1499,7 +1499,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+            "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
           },
           "editorMode": "code",
           "expr": "rspamd_pools_freed{instance=\"$instance\"}",
@@ -1523,7 +1523,7 @@
         "current": {},
         "datasource": {
           "type": "prometheus",
-          "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+          "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
         },
         "definition": "label_values(rspamd_build_info{job=\"rspamd\"}, instance)",
         "hide": 0,

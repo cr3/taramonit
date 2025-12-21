@@ -31,7 +31,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+        "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
       },
       "description": "Dovecot version",
       "fieldConfig": {
@@ -84,7 +84,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+            "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
           },
           "editorMode": "code",
           "exemplar": true,
@@ -101,7 +101,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+        "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
       },
       "description": "Dovecot Auth Stats",
       "fieldConfig": {
@@ -195,7 +195,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+            "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
           },
           "exemplar": true,
           "expr": "dovecot_auth_success_total{instance=\"$instance\"} - dovecot_auth_success_total{instance=\"$instance\"} offset $__interval",
@@ -206,7 +206,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+            "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
           },
           "exemplar": true,
           "expr": "dovecot_auth_failures_total{instance=\"$instance\"} - dovecot_auth_failures_total{instance=\"$instance\"} offset $__interval",
@@ -222,7 +222,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+        "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
       },
       "description": "Dovecot Auth Stats Duration",
       "fieldConfig": {
@@ -332,7 +332,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+            "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
           },
           "exemplar": true,
           "expr": "dovecot_auth_success_duration_seconds_total{instance=\"$instance\"} - dovecot_auth_success_duration_seconds_total{instance=\"$instance\"} offset $__interval",
@@ -343,7 +343,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+            "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
           },
           "exemplar": true,
           "expr": "dovecot_auth_failures_duration_seconds_total{instance=\"$instance\"} - dovecot_auth_failures_duration_seconds_total{instance=\"$instance\"} offset $__interval",
@@ -359,7 +359,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+        "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
       },
       "description": "Dovecot IMAP Command Stats",
       "fieldConfig": {
@@ -433,7 +433,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+            "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
           },
           "exemplar": true,
           "expr": "dovecot_imap_command_total{instance=\"$instance\"} - dovecot_imap_command_total{instance=\"$instance\"} offset $__interval",
@@ -444,7 +444,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+            "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
           },
           "exemplar": true,
           "expr": "dovecot_imap_command_count{instance=\"$instance\"} - dovecot_imap_command_count{instance=\"$instance\"} offset $__interval",
@@ -460,7 +460,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+        "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
       },
       "description": "Dovecot IMAP Command Stats Duration",
       "fieldConfig": {
@@ -555,7 +555,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+            "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
           },
           "exemplar": true,
           "expr": "dovecot_imap_command_duration_seconds_total{instance=\"$instance\"} - dovecot_imap_command_duration_seconds_total{instance=\"$instance\"} offset $__interval",
@@ -566,7 +566,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+            "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
           },
           "exemplar": true,
           "expr": "dovecot_imap_command_duration_seconds_sum{instance=\"$instance\"} - dovecot_imap_command_duration_seconds_sum{instance=\"$instance\"} offset $__interval",
@@ -582,7 +582,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+        "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
       },
       "description": "Dovecot SMTP Commands Histogram",
       "fieldConfig": {
@@ -635,7 +635,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+            "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
           },
           "exemplar": true,
           "expr": "dovecot_smtp_command_bucket{instance=\"$instance\"}",
@@ -650,7 +650,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+        "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
       },
       "description": "Dovecot SMTP Mail Delivery Histogram",
       "fieldConfig": {
@@ -699,7 +699,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+            "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
           },
           "exemplar": true,
           "expr": "dovecot_mail_delivery_bucket{instance=\"$instance\"}",
@@ -716,7 +716,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+        "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
       },
       "description": "Dovecot SMTP Command Count",
       "fieldConfig": {
@@ -794,7 +794,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+            "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
           },
           "exemplar": true,
           "expr": "dovecot_smtp_command_count{instance=\"$instance\"} - dovecot_smtp_command_count{instance=\"$instance\"} offset $__interval",
@@ -809,7 +809,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+        "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
       },
       "description": "Dovecot SMTP Command Total",
       "fieldConfig": {
@@ -887,7 +887,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+            "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
           },
           "exemplar": true,
           "expr": "dovecot_smtp_command_total{instance=\"$instance\"} - dovecot_smtp_command_total{instance=\"$instance\"} offset $__interval",
@@ -902,7 +902,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+        "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
       },
       "description": "Dovecot Mail Delivery Count",
       "fieldConfig": {
@@ -979,7 +979,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+            "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
           },
           "exemplar": true,
           "expr": "dovecot_mail_delivery_count{instance=\"$instance\"} - dovecot_mail_delivery_count{instance=\"$instance\"} offset $__interval",
@@ -994,7 +994,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+        "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
       },
       "description": "Dovecot Mail Delivery Total",
       "fieldConfig": {
@@ -1087,7 +1087,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+            "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
           },
           "exemplar": true,
           "expr": "dovecot_mail_delivery_total{instance=\"$instance\"} - dovecot_mail_delivery_total{instance=\"$instance\"} offset $__interval",
@@ -1110,7 +1110,7 @@
         "current": {},
         "datasource": {
           "type": "prometheus",
-          "uid": { "type": "prometheus", "uid": "prometheus_taramail" }
+          "uid": { "type": "prometheus", "uid": "taramail-prometheus" }
         },
         "definition": "label_values(dovecot_build_info, instance)",
         "hide": 0,

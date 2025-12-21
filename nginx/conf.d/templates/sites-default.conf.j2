@@ -65,7 +65,7 @@ location ^~ /.well-known/acme-challenge/ {
 }
 
 location / {
-    proxy_pass       http://frontend;
+    proxy_pass       http://taramonit-frontend;
     proxy_set_header Host      $http_host;
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_set_header X-Real-IP $remote_addr;
@@ -82,7 +82,7 @@ location /nginx_status {
 }
 
 location /api/ {
-    proxy_pass       http://api;
+    proxy_pass       http://taramonit-api;
     proxy_set_header Host      $http_host;
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_set_header X-Real-IP $remote_addr;
@@ -94,7 +94,7 @@ location = /alertmanager {
 }
 
 location /alertmanager/ {
-    proxy_pass       http://alertmanager:9093/;
+    proxy_pass       http://taramonit-alertmanager:9093/;
     proxy_set_header Host      $http_host;
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_set_header X-Real-IP $remote_addr;
@@ -106,7 +106,7 @@ location = /grafana {
 }
 
 location /grafana/ {
-    proxy_pass       http://grafana:3000/;
+    proxy_pass       http://taramonit-grafana:3000/;
     proxy_set_header Host      $http_host;
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_set_header X-Real-IP $remote_addr;

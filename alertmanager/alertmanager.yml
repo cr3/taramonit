@@ -13,7 +13,7 @@ receivers:
     email_configs:
       - to: "alerts@taram.ca"
         from: "monit@localhost"
-        smarthost: "postfix.taramail_default:587"
+        smarthost: "taramail-postfix:587"
         send_resolved: true
         tls_config:
           insecure_skip_verify: true
