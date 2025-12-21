@@ -4,7 +4,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus_taramail"
+        "uid": "taramail-prometheus"
       },
       "fieldConfig": {
         "defaults": {
@@ -118,7 +118,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus_tarawiki"
+        "uid": "tarawiki-prometheus"
       },
       "fieldConfig": {
         "defaults": {
@@ -232,7 +232,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus_taramonit"
+        "uid": "taramonit-prometheus"
       },
       "fieldConfig": {
         "defaults": {
@@ -347,7 +347,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus_taramail"
+        "uid": "taramail-prometheus"
       },
       "fieldConfig": {
         "defaults": {
@@ -439,7 +439,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus_taramonit"
+        "uid": "taramonit-prometheus"
       },
       "fieldConfig": {
         "defaults": {

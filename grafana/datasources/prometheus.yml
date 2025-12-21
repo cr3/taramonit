@@ -5,7 +5,7 @@ datasources:
     type: loki
     access: proxy
     uid: loki
-    url: http://loki:3100
+    url: http://taramonit-loki:3100
     editable: false
     jsonData:
       derivedFields:
@@ -15,54 +15,11 @@ datasources:
           name: TraceID
           url: $${__value.raw}
 
-  - name: taramail
-    type: prometheus
-    access: proxy
-    uid: prometheus_taramail
-    url: http://prometheus.taramail_default:9090
-    editable: false
-    jsonData:
-      exemplarTraceIdDestinations:
-        - datasourceUid: tempo
-          name: TraceID
-      httpMethod: POST
-
-  - name: taramonit
-    type: prometheus
-    access: proxy
-    uid: prometheus_taramonit
-    url: http://prometheus.taramonit_default:9090
-    isDefault: true
-    editable: false
-    jsonData:
-      httpMethod: GET
-      timeInterval: 30s
-
-  - name: taramux
-    type: prometheus
-    access: proxy
-    uid: prometheus_taramux
-    url: http://prometheus.taramux_default:9090
-    editable: false
-    jsonData:
-      httpMethod: GET
-      timeInterval: 30s
-
-  - name: tarawiki
-    type: prometheus
-    access: proxy
-    uid: prometheus_tarawiki
-    url: http://prometheus.tarawiki_default:9090
-    editable: false
-    jsonData:
-      httpMethod: GET
-      timeInterval: 30s
-
   - name: Tempo
     type: tempo
     access: proxy
     uid: tempo
-    url: http://tempo:3200
+    url: http://taramonit-tempo:3200
     editable: false
     jsonData:
       nodeGraph:
@@ -75,3 +32,46 @@ datasources:
         tags:
           - key: service.name
             value: compose_service
+
+  - name: taramail
+    type: prometheus
+    access: proxy
+    uid: taramail-prometheus
+    url: http://taramail-prometheus:9090
+    editable: false
+    jsonData:
+      exemplarTraceIdDestinations:
+        - datasourceUid: tempo
+          name: TraceID
+      httpMethod: POST
+
+  - name: taramonit
+    type: prometheus
+    access: proxy
+    uid: taramonit-prometheus
+    url: http://taramonit-prometheus:9090
+    isDefault: true
+    editable: false
+    jsonData:
+      httpMethod: GET
+      timeInterval: 30s
+
+  - name: taramux
+    type: prometheus
+    access: proxy
+    uid: taramux-prometheus
+    url: http://taramux-prometheus:9090
+    editable: false
+    jsonData:
+      httpMethod: GET
+      timeInterval: 30s
+
+  - name: tarawiki
+    type: prometheus
+    access: proxy
+    uid: tarawiki-prometheus
+    url: http://tarawiki-prometheus:9090
+    editable: false
+    jsonData:
+      httpMethod: GET
+      timeInterval: 30s

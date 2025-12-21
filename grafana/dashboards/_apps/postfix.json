@@ -20,7 +20,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": { "type": "prometheus", "uid": "prometheus_taramail" },
+      "datasource": { "type": "prometheus", "uid": "taramail-prometheus" },
       "fill": 8,
       "gridPos": {
         "h": 7,
@@ -96,7 +96,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": { "type": "prometheus", "uid": "prometheus_taramail" },
+      "datasource": { "type": "prometheus", "uid": "taramail-prometheus" },
       "fill": 0,
       "gridPos": {
         "h": 7,
@@ -185,7 +185,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": { "type": "prometheus", "uid": "prometheus_taramail" },
+      "datasource": { "type": "prometheus", "uid": "taramail-prometheus" },
       "fill": 8,
       "gridPos": {
         "h": 7,
@@ -261,7 +261,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": { "type": "prometheus", "uid": "prometheus_taramail" },
+      "datasource": { "type": "prometheus", "uid": "taramail-prometheus" },
       "fill": 8,
       "gridPos": {
         "h": 7,
@@ -337,7 +337,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": { "type": "prometheus", "uid": "prometheus_taramail" },
+      "datasource": { "type": "prometheus", "uid": "taramail-prometheus" },
       "fill": 8,
       "gridPos": {
         "h": 7,
@@ -426,7 +426,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": { "type": "prometheus", "uid": "prometheus_taramail" },
+      "datasource": { "type": "prometheus", "uid": "taramail-prometheus" },
       "fill": 8,
       "gridPos": {
         "h": 7,
@@ -502,7 +502,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": { "type": "prometheus", "uid": "prometheus_taramail" },
+      "datasource": { "type": "prometheus", "uid": "taramail-prometheus" },
       "fill": 8,
       "gridPos": {
         "h": 7,
@@ -578,7 +578,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": { "type": "prometheus", "uid": "prometheus_taramail" },
+      "datasource": { "type": "prometheus", "uid": "taramail-prometheus" },
       "fill": 0,
       "gridPos": {
         "h": 7,
@@ -669,7 +669,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": { "type": "prometheus", "uid": "prometheus_taramail" },
+      "datasource": { "type": "prometheus", "uid": "taramail-prometheus" },
       "fill": 8,
       "gridPos": {
         "h": 7,
@@ -747,7 +747,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": { "type": "prometheus", "uid": "prometheus_taramail" },
+      "datasource": { "type": "prometheus", "uid": "taramail-prometheus" },
       "fill": 8,
       "gridPos": {
         "h": 7,
@@ -909,7 +909,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": { "type": "prometheus", "uid": "prometheus_taramail" },
+      "datasource": { "type": "prometheus", "uid": "taramail-prometheus" },
       "fill": 8,
       "gridPos": {
         "h": 7,
@@ -1000,7 +1000,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": { "type": "prometheus", "uid": "prometheus_taramail" },
+      "datasource": { "type": "prometheus", "uid": "taramail-prometheus" },
       "fill": 8,
       "gridPos": {
         "h": 7,
@@ -1076,7 +1076,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": { "type": "prometheus", "uid": "prometheus_taramail" },
+      "datasource": { "type": "prometheus", "uid": "taramail-prometheus" },
       "fill": 8,
       "gridPos": {
         "h": 7,
@@ -1152,7 +1152,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": { "type": "prometheus", "uid": "prometheus_taramail" },
+      "datasource": { "type": "prometheus", "uid": "taramail-prometheus" },
       "fill": 8,
       "gridPos": {
         "h": 7,
@@ -1230,7 +1230,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": { "type": "prometheus", "uid": "prometheus_taramail" },
+      "datasource": { "type": "prometheus", "uid": "taramail-prometheus" },
       "fill": 8,
       "gridPos": {
         "h": 7,
@@ -1308,7 +1308,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": { "type": "prometheus", "uid": "prometheus_taramail" },
+      "datasource": { "type": "prometheus", "uid": "taramail-prometheus" },
       "fill": 8,
       "gridPos": {
         "h": 7,
@@ -1384,7 +1384,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": { "type": "prometheus", "uid": "prometheus_taramail" },
+      "datasource": { "type": "prometheus", "uid": "taramail-prometheus" },
       "fill": 8,
       "gridPos": {
         "h": 7,
@@ -1460,7 +1460,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": { "type": "prometheus", "uid": "prometheus_taramail" },
+      "datasource": { "type": "prometheus", "uid": "taramail-prometheus" },
       "fill": 0,
       "gridPos": {
         "h": 7,
@@ -1622,7 +1622,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": { "type": "prometheus", "uid": "prometheus_taramail" },
+      "datasource": { "type": "prometheus", "uid": "taramail-prometheus" },
       "fill": 8,
       "gridPos": {
         "h": 7,
@@ -1704,7 +1704,7 @@
       {
         "allValue": null,
         "current": {},
-        "datasource": { "type": "prometheus", "uid": "prometheus_taramail" },
+        "datasource": { "type": "prometheus", "uid": "taramail-prometheus" },
         "definition": "",
         "hide": 0,
         "includeAll": true,
