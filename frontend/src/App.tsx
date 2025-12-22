@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
 import { OverallStatus } from './types'
 import StatusPage from './components/StatusPage'
+import backgroundImage from "./assets/taram.jpeg";
 
-const API_URL = import.meta.env.VITE_API_URL || ''
+const API_URL = import.meta.env.VITE_API_URL || 'https://status.taram.ca'
 
 function App() {
   const [status, setStatus] = useState<OverallStatus | null>(null)
@@ -35,7 +36,10 @@ function App() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div
+      className="min-h-screen bg-zinc-50 text-zinc-900 dark:bg-black dark:text-zinc-100 bg-cover bg-center bg-fixed"
+      style={{ backgroundImage: `url(${backgroundImage})` }}
+    >
       <StatusPage
         status={status}
         loading={loading}

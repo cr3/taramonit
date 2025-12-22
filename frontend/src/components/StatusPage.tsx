@@ -16,7 +16,7 @@ function StatusPage({ status, loading, error, lastUpdated, onRefresh }: StatusPa
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-          <p className="mt-4 text-gray-600">Loading status...</p>
+          <p className="mt-4 text-white">Loading status...</p>
         </div>
       </div>
     )
@@ -80,7 +80,9 @@ function StatusPage({ status, loading, error, lastUpdated, onRefresh }: StatusPa
 
       {/* Services List */}
       <div className="space-y-4">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-4">Services</h2>
+        <div className="mb-4 flex justify-between items-center">
+          <h2 className="text-2xl font-semibold text-white">Services</h2>
+	</div>
         {status.services.map((service) => (
           <ServiceCard key={service.name} service={service} />
         ))}
