@@ -1,9 +1,13 @@
+import { useTranslation } from 'react-i18next'
+
 interface StatusBadgeProps {
   status: 'operational' | 'degraded' | 'up' | 'down'
   large?: boolean
 }
 
 function StatusBadge({ status, large = false }: StatusBadgeProps) {
+  const { t } = useTranslation()
+
   const getStatusConfig = () => {
     switch (status) {
       case 'operational':
@@ -12,7 +16,7 @@ function StatusBadge({ status, large = false }: StatusBadgeProps) {
           bg: 'bg-green-100',
           text: 'text-green-800',
           icon: '✓',
-          label: status === 'operational' ? 'All Systems Operational' : 'Operational'
+          label: status === 'operational' ? t('status.allOperational') : t('status.operational')
         }
       case 'degraded':
       case 'down':
@@ -20,7 +24,7 @@ function StatusBadge({ status, large = false }: StatusBadgeProps) {
           bg: 'bg-red-100',
           text: 'text-red-800',
           icon: '✗',
-          label: status === 'degraded' ? 'Degraded Performance' : 'Down'
+          label: status === 'degraded' ? t('status.degradedPerformance') : t('status.down')
         }
     }
   }

@@ -159,20 +159,7 @@ describe('StatusPage', () => {
     )
 
     expect(screen.getByText('Services')).toBeInTheDocument()
-  })
-
-  it('displays footer with update interval message', () => {
-    render(
-      <StatusPage
-        status={stubStatus}
-        loading={false}
-        error={null}
-        lastUpdated={mockLastUpdated}
-        onRefresh={() => {}}
-      />
-    )
-
-    expect(screen.getByText('Status updates every 30 seconds')).toBeInTheDocument()
+    expect(screen.getByText('Updated every 30 seconds')).toBeInTheDocument()
   })
 
   it('renders degraded status correctly', () => {

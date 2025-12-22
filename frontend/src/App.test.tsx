@@ -136,6 +136,6 @@ describe('App', () => {
 
     const { container } = render(<App />)
     const mainDiv = container.firstChild as HTMLElement
-    expect(mainDiv).toHaveClass('min-h-screen', 'bg-gray-50')
+    expect(mainDiv).toHaveClass('min-h-screen', 'bg-zinc-50')
   })
 })

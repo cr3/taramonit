@@ -1,0 +1,35 @@
+{
+  "app": {
+    "title": "État de Taram",
+    "subtitle": "État des services et disponibilité en temps réel"
+  },
+  "status": {
+    "allOperational": "Tous les systèmes opérationnels",
+    "operational": "Opérationnel",
+    "degradedPerformance": "Performance dégradée",
+    "down": "Hors service"
+  },
+  "loading": {
+    "status": "Chargement de l'état..."
+  },
+  "error": {
+    "unableToLoad": "Impossible de charger l'état",
+    "tryAgain": "Réessayer",
+    "failedToFetch": "Échec de la récupération de l'état",
+    "unknown": "Erreur inconnue"
+  },
+  "services": {
+    "title": "Services",
+    "uptime24h": "Disponibilité 24h",
+    "notAvailable": "N/A"
+  },
+  "actions": {
+    "refresh": "Actualiser"
+  },
+  "footer": {
+    "autoUpdate": "Mis à jour toutes les 30 secondes"
+  },
+  "time": {
+    "lastUpdated": "Dernière mise à jour : {{time}}"
+  }
+}

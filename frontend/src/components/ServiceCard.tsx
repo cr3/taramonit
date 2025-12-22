@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { ServiceStatus } from '../types'
 import StatusBadge from './StatusBadge'
 
@@ -6,8 +7,10 @@ interface ServiceCardProps {
 }
 
 function ServiceCard({ service }: ServiceCardProps) {
+  const { t } = useTranslation()
+
   const formatAvailability = (availability: number | null) => {
-    if (availability === null) return 'N/A'
+    if (availability === null) return t('services.notAvailable')
     return `${availability.toFixed(2)}%`
   }
 
@@ -21,7 +24,7 @@ function ServiceCard({ service }: ServiceCardProps) {
           <StatusBadge status={service.status} />
         </div>
         <div className="text-right">
-          <p className="text-sm text-gray-500 mb-1">24h Uptime</p>
+          <p className="text-sm text-gray-500 mb-1">{t('services.uptime24h')}</p>
           <p className={`text-2xl font-bold ${
             service.availability_24h !== null && service.availability_24h >= 99.9
               ? 'text-green-600'
