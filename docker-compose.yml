@@ -21,7 +21,7 @@ services:
     restart: always
 
   alloy:
-    image: grafana/alloy:v1.12.1
+    image: grafana/alloy:v1.12.2
     depends_on:
       loki:
         condition: service_started
