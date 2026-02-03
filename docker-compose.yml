@@ -90,7 +90,7 @@ services:
     privileged: true
 
   certbot:
-    image: certbot/certbot:v5.2.2
+    image: certbot/certbot:v5.3.0
     volumes:
       - ./certbot/deploy-hook.sh:/deploy-hook.sh:ro,Z
       - certbot-certs:/etc/letsencrypt
