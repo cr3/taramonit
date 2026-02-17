@@ -246,7 +246,7 @@ services:
     restart: always
 
   tempo:
-    image: grafana/tempo:2.10.0
+    image: grafana/tempo:2.10.1
     depends_on:
       loki:
         condition: service_started
