@@ -156,7 +156,7 @@ services:
     restart: always
 
   loki:
-    image: grafana/loki:3.6.5
+    image: grafana/loki:3.6.6
     networks:
       default:
         aliases:
