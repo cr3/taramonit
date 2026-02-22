@@ -13,7 +13,7 @@ packages = [
 include = [
     "taramonit/templates/**/*.j2",
 ]
-requires-python = ">=3.11,<4.0"
+requires-python = ">=3.12,<4.0"
 dependencies = [
     "attrs (>=25.3.0,<26.0.0)",
     "httpx (>=0.28.1,<1.0.0)",
@@ -48,7 +48,7 @@ requires = ["hatchling", "hatch-vcs"]
 build-backend = "hatchling.build"
 
 [tool.ruff]
-target-version = "py311"
+target-version = "py314"
 line-length = 120
 fix = true
 lint.select = [
