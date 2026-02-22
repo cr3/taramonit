@@ -2,5 +2,5 @@
 !*.rst
 !log-config.*
 !pyproject.toml
-!poetry.lock
+!uv.lock
 !taramonit
