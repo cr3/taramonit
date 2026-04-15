@@ -17,7 +17,7 @@ describe('App', () => {
   }
 
   beforeEach(() => {
-    global.fetch = vi.fn()
+    globalThis.fetch = vi.fn()
   })
 
   afterEach(() => {
@@ -25,7 +25,7 @@ describe('App', () => {
   })
 
   it('shows loading state initially', async () => {
-    global.fetch = vi.fn(() =>
+    globalThis.fetch = vi.fn(() =>
       Promise.resolve({
         ok: true,
         json: () => Promise.resolve(stubStatusData),
@@ -41,7 +41,7 @@ describe('App', () => {
   })
 
   it('fetches and displays status data on mount', async () => {
-    global.fetch = vi.fn(() =>
+    globalThis.fetch = vi.fn(() =>
       Promise.resolve({
         ok: true,
         json: () => Promise.resolve(stubStatusData),
@@ -55,13 +55,13 @@ describe('App', () => {
     })
 
     expect(screen.getByText('Service 1')).toBeInTheDocument()
-    expect(global.fetch).toHaveBeenCalled()
-    const fetchMock = vi.mocked(global.fetch)
+    expect(globalThis.fetch).toHaveBeenCalled()
+    const fetchMock = vi.mocked(globalThis.fetch)
     expect(fetchMock.mock.calls[0][0]).toMatch(/\/api\/status$/)
   })
 
   it('displays error message when fetch fails', async () => {
-    global.fetch = vi.fn(() =>
+    globalThis.fetch = vi.fn(() =>
       Promise.resolve({
         ok: false,
       } as Response)
@@ -77,7 +77,7 @@ describe('App', () => {
   })
 
   it('handles network error correctly', async () => {
-    global.fetch = vi.fn(() => Promise.reject(new Error('Network error')))
+    globalThis.fetch = vi.fn(() => Promise.reject(new Error('Network error')))
 
     render(<App />)
 
@@ -89,7 +89,7 @@ describe('App', () => {
   })
 
   it('handles non-Error exceptions', async () => {
-    global.fetch = vi.fn(() => Promise.reject('String error'))
+    globalThis.fetch = vi.fn(() => Promise.reject('String error'))
 
     render(<App />)
 
@@ -103,7 +103,7 @@ describe('App', () => {
   it('refreshes data when onRefresh is called', async () => {
     const user = userEvent.setup({ delay: null })
 
-    global.fetch = vi.fn(() =>
+    globalThis.fetch = vi.fn(() =>
       Promise.resolve({
         ok: true,
         json: () => Promise.resolve(stubStatusData),
@@ -116,18 +116,18 @@ describe('App', () => {
       expect(screen.getByText('Taram Status')).toBeInTheDocument()
     })
 
-    expect(global.fetch).toHaveBeenCalledTimes(1)
+    expect(globalThis.fetch).toHaveBeenCalledTimes(1)
 
     const refreshButton = screen.getByText('Refresh')
     await user.click(refreshButton)
 
     await waitFor(() => {
-      expect(global.fetch).toHaveBeenCalledTimes(2)
+      expect(globalThis.fetch).toHaveBeenCalledTimes(2)
     })
   })
 
   it('renders with correct container styling', () => {
-    global.fetch = vi.fn(() =>
+    globalThis.fetch = vi.fn(() =>
       Promise.resolve({
         ok: true,
         json: () => Promise.resolve(stubStatusData),
