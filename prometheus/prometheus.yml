@@ -20,8 +20,9 @@ scrape_configs:
     static_configs:
       - targets:
           - https://chat.taram.ca
-          - https://mail.taram.ca
           - https://lists.taram.ca
+          - https://mail.taram.ca
+          - https://meteo.taram.ca
           - https://wiki.taram.ca
     relabel_configs:
       - source_labels: [__address__]
