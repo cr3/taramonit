@@ -19,6 +19,7 @@ scrape_configs:
       module: [http_2xx]
     static_configs:
       - targets:
+          - https://chat.taram.ca
           - https://mail.taram.ca
           - https://wiki.taram.ca
     relabel_configs:

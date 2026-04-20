@@ -86,6 +86,8 @@ async def get_status(prometheus: PrometheusDep):
     """Get overall status of all services."""
 
     (
+        chat_status,
+        chat_availability,
         mail_status,
         mail_availability,
         dovecot_status,
@@ -95,6 +97,8 @@ async def get_status(prometheus: PrometheusDep):
         wiki_status,
         wiki_availability,
     ) = await asyncio.gather(
+        prometheus.query('probe_success{instance="https://chat.taram.ca"}'),
+        prometheus.query('avg_over_time(probe_success{instance="https://chat.taram.ca"}[24h]) * 100'),
         prometheus.query('probe_success{instance="https://mail.taram.ca"}'),
         prometheus.query('avg_over_time(probe_success{instance="https://mail.taram.ca"}[24h]) * 100'),
         prometheus.query('clamp_max(count(dovecot_build_info), 1)'),
@@ -106,6 +110,11 @@ async def get_status(prometheus: PrometheusDep):
     )
 
     services = [
+        ServiceStatus(
+            name="Chat",
+            status="up" if chat_status else "down",
+            availability_24h=chat_availability
+        ),
         ServiceStatus(
             name="Mail (web)",
             status="up" if mail_status else "down",
