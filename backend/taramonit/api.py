@@ -92,6 +92,8 @@ async def get_status(prometheus: PrometheusDep):
         mail_availability,
         dovecot_status,
         dovecot_availability,
+        lists_status,
+        lists_availability,
         rspamd_status,
         rspamd_availability,
         wiki_status,
@@ -103,6 +105,8 @@ async def get_status(prometheus: PrometheusDep):
         prometheus.query('avg_over_time(probe_success{instance="https://mail.taram.ca"}[24h]) * 100'),
         prometheus.query('clamp_max(count(dovecot_build_info), 1)'),
         prometheus.query('avg_over_time(clamp_max(count(dovecot_build_info), 1)[24h:]) * 100'),
+        prometheus.query('probe_success{instance="https://lists.taram.ca"}'),
+        prometheus.query('avg_over_time(probe_success{instance="https://lists.taram.ca"}[24h]) * 100'),
         prometheus.query('clamp_max(count(rspamd_config), 1)'),
         prometheus.query('avg_over_time(clamp_max(count(rspamd_config), 1)[24h:]) * 100'),
         prometheus.query('probe_success{instance="https://wiki.taram.ca"}'),
@@ -124,6 +128,11 @@ async def get_status(prometheus: PrometheusDep):
             name="Dovecot",
             status="up" if dovecot_status else "down",
             availability_24h=dovecot_availability
+        ),
+        ServiceStatus(
+            name="Lists",
+            status="up" if lists_status else "down",
+            availability_24h=lists_availability
         ),
         ServiceStatus(
             name="Rspamd",
